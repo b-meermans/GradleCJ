@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Gradle Test</title>
+    <script src="https://cjrtnc.leaningtech.com/3.0/cj3loader.js"></script>
+
+    <style>
+        #log-output {
+            width: 100%;
+            height: 200px;
+        }
+        .expanded {
+            height: 400px;
+        }
+    </style>
+</head>
+<body>
+<h1>Testing</h1>
+
+<!-- Textarea for console output -->
+<textarea id="log-output" readonly></textarea>
+<button id="toggleTextAreaButton" onclick="toggleTextArea()">▼</button>
+
+<script src="js/console_output.js"></script>
+<script>
+    async function runJavaSnippet() {
+        await cheerpjInit();
+        const lib = await cheerpjRunLibrary("/app/build/libs/GradleCJ-1.0.jar");
+
+        const Main = await lib.com.Main;
+        const example = await new Main();
+        console.log(await Main.getAddresses());
+    }
+
+    // Run the function when the window loads
+    window.onload = runJavaSnippet;
+</script>
+</body>
+</html>
